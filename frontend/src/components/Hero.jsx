@@ -7,7 +7,7 @@ const Hero = ({ title, imageUrl }) => {
         <div className="banner">
           <h1>{title}</h1>
           <p>
-            ZeeCare Medical Institute is a state-of-the-art facility dedicated
+            Shaheen Medical Hospital Medical Institute is a state-of-the-art facility dedicated
             to providing comprehensive healthcare services with compassion and
             expertise. Our team of skilled professionals is committed to
             delivering personalized care tailored to each patient's needs. At
