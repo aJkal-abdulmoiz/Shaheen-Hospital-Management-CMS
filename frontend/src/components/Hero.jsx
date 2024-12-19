@@ -10,9 +10,7 @@ const Hero = ({ title, imageUrl }) => {
             Shaheen Medical Hospital Medical Institute is a state-of-the-art facility dedicated
             to providing comprehensive healthcare services with compassion and
             expertise. Our team of skilled professionals is committed to
-            delivering personalized care tailored to each patient's needs. At
-            ZeeCare, we prioritize your well-being, ensuring a harmonious
-            journey towards optimal health and wellness.
+            delivering personalized care tailored to each patient's needs.
           </p>
         </div>
         <div className="banner">
