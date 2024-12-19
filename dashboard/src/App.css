@@ -197,7 +197,7 @@ body {
   font-size: 16px;
 }
 .dashboard .banner:first-child .secondBox {
-  background: #3939d9f2;
+  background: #1894e7;
   color: #fff;
 }
 .dashboard .banner:first-child .thirdBox {
@@ -342,7 +342,7 @@ body {
 .sidebar {
   position: fixed;
   width: 120px;
-  background: transparent;
+  background: #057dcd;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -360,7 +360,7 @@ body {
 }
 .sidebar svg:hover {
   background: #fff;
-  color: #3939d9f2;
+  color: #057dcd;
   border-radius: 8px;
   transition: 0.3s;
   cursor: pointer;
@@ -379,7 +379,7 @@ body {
 
 @media (max-width: 1208px) {
   .sidebar {
-    background: #3939d9f2;
+    background: #057dcd;
     left: -100%;
     transition: 0.3s;
   }
@@ -393,7 +393,7 @@ body {
     top: 30px;
     left: 40px;
     font-size: 34px;
-    background: #3939d9f2;
+    background: #1894e7; 
     color: #fff;
     height: 40px;
     width: 40px;
