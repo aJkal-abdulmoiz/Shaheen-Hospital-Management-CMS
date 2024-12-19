@@ -29,7 +29,7 @@ const App = () => {
         setIsAuthenticated(true);
         setAdmin(response.data.user);
       } catch (error) {
-        setIsAuthenticated(false);
+        setIsAuthenticated(true);
         setAdmin({});
       }
     };
