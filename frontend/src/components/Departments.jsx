@@ -45,12 +45,12 @@ const Departments = () => {
   const responsive = {
     extraLarge: {
       breakpoint: { max: 3000, min: 1324 },
-      items: 4,
+      items: 3,
       slidesToSlide: 1, // optional, default to 1.
     },
     large: {
       breakpoint: { max: 1324, min: 1005 },
-      items: 3,
+      items: 2,
       slidesToSlide: 1, // optional, default to 1.
     },
     medium: {
