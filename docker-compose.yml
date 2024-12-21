@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # Backend Service (Node.js with Express)
+  backend:
+    image: abdulmoiz833dev/cms-backend:latest # Replace with your actual image
+    container_name: cms-backend
+    build:
+      context: ./backend  # Dockerfile for backend (if you are building locally)
+    ports:
+      - "4000:4000"  # Expose backend port
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM # MongoDB service reference
+      - PORT=4000
+      - JWT_SECRET_KEY="hf2uhyf89ewhfih289hf289hf892h89hf92"
+      - JWT_EXPIRES="1d"
+      - COOKIE_EXPIRE=7
+    depends_on:
+      - mongo  # Wait for MongoDB before starting the backend
+    networks:
+      - app-network
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    container_name: mongo-db
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    networks:
+      - app-network
+
+  # Frontend (React UI)
+  frontend:
+    image: abdulmoiz833dev/user-interface:latest  # Replace with your actual frontend image
+    container_name: frontend
+    build:
+      context: ./frontend  # Dockerfile for frontend (if you are building locally)
+    ports:
+      - "5173:5173"   # Expose frontend port
+    environment:
+      - REACT_APP_API_URL=http://backend:4000   # API URL to connect to the backend service
+    depends_on:
+      - backend  # Wait for the backend before starting the frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
