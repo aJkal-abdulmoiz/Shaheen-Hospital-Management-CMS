@@ -1,49 +1,45 @@
-version: '3.8'
+version: '3.8'  # Docker Compose version
 
 services:
-  # Backend Service (Node.js with Express)
+  # Backend Service (Node.js API)
   backend:
-    image: abdulmoiz833dev/cms-backend:latest # Replace with your actual image
-    container_name: cms-backend
+    image: cms-backend:latest  # Backend image
+    container_name: cms-backend  # Container name
     build:
-      context: ./backend  # Dockerfile for backend (if you are building locally)
+      context: ./backend  # Build from the backend directory
     ports:
       - "4000:4000"  # Expose backend port
     environment:
-      - MONGO_URI=mongodb://mongo:27017/MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM # MongoDB service reference
-      - PORT=4000
-      - JWT_SECRET_KEY="hf2uhyf89ewhfih289hf289hf892h89hf92"
-      - JWT_EXPIRES="1d"
-      - COOKIE_EXPIRE=7
+      - MONGO_URI=mongodb://mongo:27017/MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM  # MongoDB URI
     depends_on:
-      - mongo  # Wait for MongoDB before starting the backend
+      - mongo  # Wait for MongoDB
     networks:
-      - app-network
+      - hospital-network  # Connect to network
 
   # MongoDB Service
   mongo:
-    image: mongo:latest
-    container_name: mongo-db
+    image: mongo:latest  # MongoDB image
+    container_name: mongo  # Container name
     ports:
       - "27017:27017"  # Expose MongoDB port
     networks:
-      - app-network
+      - hospital-network  # Connect to network
 
-  # Frontend (React UI)
+  # Frontend Service (React UI)
   frontend:
-    image: abdulmoiz833dev/user-interface:latest  # Replace with your actual frontend image
-    container_name: frontend
+    image: react-user-interface:latest  # Frontend image
+    container_name: react-user-interface  # Container name
     build:
-      context: ./frontend  # Dockerfile for frontend (if you are building locally)
+      context: ./frontend  # Build from frontend directory
     ports:
-      - "5173:5173"   # Expose frontend port
+      - "5173:5173"  # Expose frontend port
     environment:
-      - REACT_APP_API_URL=http://backend:4000   # API URL to connect to the backend service
+      - REACT_APP_API_URL=http://backend:4000  # Set API URL for frontend
     depends_on:
-      - backend  # Wait for the backend before starting the frontend
+      - backend  # Wait for backend
     networks:
-      - app-network
+      - hospital-network  # Connect to network
 
 networks:
-  app-network:
-    driver: bridge
+  hospital-network:
+    driver: bridge  # Set the network driver to 'bridge'

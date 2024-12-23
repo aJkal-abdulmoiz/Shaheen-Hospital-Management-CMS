@@ -18,7 +18,7 @@ EXPOSE 4000
 
 # Set environment variables from .env file
 ENV PORT=4000
-ENV MONGO_URI="mongodb://localhost:27017/MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM"
+ENV MONGO_URI="mongodb://mongodb:27017/MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM"
 ENV FRONTEND_URL_ONE=http://localhost:5173
 ENV FRONTEND_URL_TWO=http://localhost:5174
 ENV JWT_SECRET_KEY="hf2uhyf89ewhfih289hf289hf892h89hf92"
@@ -27,4 +27,3 @@ ENV COOKIE_EXPIRE=7
 
 # Start the application
 CMD ["npm", "start"]
-
