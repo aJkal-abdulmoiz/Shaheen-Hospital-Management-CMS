@@ -1,5 +1,23 @@
 # Hospital-Management-System
 
+## Table of Contents
+1. [Semester Project](#semester-project)
+2. [Group Members](#group-members)
+3. [Project Overview](#project-overview)
+4. [GitHub Configuration(CI/CD)](#github-configuratio-(ci/cd))
+5. [Slack Configuration](#slack-configuration)
+6. [Email Configuration](#email-configuration)
+7. [Docker Configuration](#docker-configuration)
+    - [Frontend: React User Interface](#frontend-react-user-interface)
+    - [Frontend: Admin Interface](#frontend-admin-interface)
+    - [Backend: CMS-Backend](#backend-cms-backend)
+8. [Docker-compose.yml](#docker-composeyml)
+    - [Setup Instructions](#setup-instructions)
+9. [CI/CD Using GitLab](#cicd-using-gitlab)
+    - [Build and Push](#build-and-push)
+    - [Pull and Deploy](#pull-and-deploy)
+10. [Conclusion](#conclusion)
+
 ## Semester Project
 
 
@@ -9,9 +27,11 @@
 - Amman Ahmed Khan (221036)
 
 ## Project Overview
-This project is a comprehensive Hospital Management System built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It includes a frontend for users, an admin interface, and a backend API. The project is containerized using Docker and employs CI/CD pipelines for continuous integration and deployment.
+This project demonstrates the successful implementation of a comprehensive Hospital Management System using the MERN stack. By leveraging Docker for containerization and GitLab CI/CD pipelines, we have achieved a robust DevOps workflow that ensures continuous integration and deployment. The integration of Jenkins for CI/CD with GitHub webhooks, Slack, and email notifications further enhances the automation and monitoring capabilities of the system. This project showcases the effective application of modern DevOps practices to streamline development, deployment, and maintenance processes, ultimately leading to a more efficient and reliable software delivery pipeline.
 
-## GitHub Configuration
+
+
+## GitHub Configuration(CI/CD)
 1. Go to Jenkins and add Credentials.
 2. Create a Freestyle Project job.
 3. Click the Build Now icon to see commits applying CI/CD (continuous delivery).
@@ -247,5 +267,4 @@ Deployed on Localhost Server:
 - Deploy Completed
 
 ## Conclusion
-Conclusion
-This project demonstrates the successful implementation of a comprehensive Hospital Management System using the MERN stack. By leveraging Docker for containerization and GitLab CI/CD pipelines, we have achieved a robust DevOps workflow that ensures continuous integration and deployment. The integration of Jenkins, Slack, and email notifications further enhances the automation and monitoring capabilities of the system. This project showcases the effective application of modern DevOps practices to streamline development, deployment, and maintenance processes, ultimately leading to a more efficient and reliable software delivery pipeline.
+Successfully implemented a Hospital Management System with CI/CD pipelines using GitLab and Jenkins, enhancing automation and monitoring.
