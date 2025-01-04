@@ -8,6 +8,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 
 const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
+  const [doctors, setdoctors] = useState([]);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -23,6 +24,21 @@ const Dashboard = () => {
     };
     fetchAppointments();
   }, []);
+
+    useEffect(() => {
+      const fetchdoctors = async () => {
+        try {
+          const { data } = await axios.get(
+            "http://localhost:4000/api/v1/user/doctors/getall",
+            { withCredentials: true }
+          );
+          setdoctors(data.doctors);
+        } catch (error) {
+          setdoctors([]);
+        }
+      };
+      fetchdoctors();
+    }, []);
 
   const handleUpdateStatus = async (appointmentId, status) => {
     try {
@@ -54,27 +70,28 @@ const Dashboard = () => {
       <section className="dashboard page">
         <div className="banner">
           <div className="firstBox">
-            <img src="/doc.png" alt="docImg" />
             <div className="content">
-              <div>
-                <p>Hello ,</p>
-                <h5>
-                  {admin &&
-                    `${admin.firstName} ${admin.lastName}`}{" "}
-                </h5>
+              <div style={{textAlign: 'center'}}>
+                <div>
+                  <h4>Hello ,Welcome back</h4>
+                </div>
+                <div className="div-h5" >
+                  <h5>
+                    {admin &&
+                      `${admin.firstName} ${admin.lastName}`}{" "}
+                  </h5>
+                </div>
+
               </div>
-              <p>
-                Welcome To Maroof International Hospital Managment Dashboard.
-              </p>
             </div>
           </div>
           <div className="secondBox">
             <p>Total Appointments</p>
-            <h3>5</h3>
+            <h3>{appointments.length}</h3>
           </div>
           <div className="thirdBox">
             <p>Registered Doctors</p>
-            <h3>0</h3>
+            <h3>{doctors.length}</h3>
           </div>
         </div>
         <div className="banner">

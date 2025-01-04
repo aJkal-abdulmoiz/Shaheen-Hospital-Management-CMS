@@ -4,6 +4,14 @@ import ErrorHandler from "../middlewares/error.js";
 import { generateToken } from "../utils/jwtToken.js";
 import cloudinary from "cloudinary";
 
+import dotenv from "dotenv";
+dotenv.config();
+console.log(process.env.CLOUDINARY_CLOUD_NAME);
+console.log(process.env.CLOUDINARY_API_KEY);
+console.log(process.env.CLOUDINARY_API_SECRET);
+
+
+
 export const patientRegister = catchAsyncErrors(async (req, res, next) => {
   const { firstName, lastName, email, phone, nic, dob, gender, password } =
     req.body;
@@ -105,10 +113,11 @@ export const addNewAdmin = catchAsyncErrors(async (req, res, next) => {
 
 export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
+    // res.status(400,{msg: "Avatar Image is required!"})
     return next(new ErrorHandler("Doctor Avatar Required!", 400));
   }
   const { docAvatar } = req.files;
-  const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+  const allowedFormats = ["image/png","image/jpg", "image/jpeg", "image/webp"];
   if (!allowedFormats.includes(docAvatar.mimetype)) {
     return next(new ErrorHandler("File Format Not Supported!", 400));
   }
@@ -145,7 +154,9 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
   }
   const cloudinaryResponse = await cloudinary.uploader.upload(
     docAvatar.tempFilePath
+    
   );
+  console.log(cloudinaryResponse);
   if (!cloudinaryResponse || cloudinaryResponse.error) {
     console.error(
       "Cloudinary Error:",
@@ -167,10 +178,17 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
     role: "Doctor",
     doctorDepartment,
     docAvatar: {
-      public_id: cloudinaryResponse.public_id,
+      public_id: cloudinaryResponse.etag,
       url: cloudinaryResponse.secure_url,
     },
   });
+  // try{
+
+  // }
+  // catch(error){
+    
+  //   next(error)
+  // }
   res.status(200).json({
     success: true,
     message: "New Doctor Registered",

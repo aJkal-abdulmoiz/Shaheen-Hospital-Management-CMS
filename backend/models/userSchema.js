@@ -7,12 +7,12 @@ const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true, "First Name Is Required!"],
-    minLength: [3, "First Name Must Contain At Least 3 Characters!"],
+   
   },
   lastName: {
     type: String,
     required: [true, "Last Name Is Required!"],
-    minLength: [3, "Last Name Must Contain At Least 3 Characters!"],
+    
   },
   email: {
     type: String,
@@ -59,6 +59,7 @@ const userSchema = new mongoose.Schema({
     url: String,
   },
 });
+
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
