@@ -170,7 +170,7 @@ body {
   display: flex;
   align-items: center;
   border-radius: 20px;
-  background: #b5b5ff;
+  background: #1894e7;
   padding: 20px 20px 0 10px;
 }
 .dashboard .banner:first-child .firstBox img {
@@ -190,6 +190,12 @@ body {
   margin-right: 10px;
   font-size: 34px;
 }
+.div-h5{
+  margin-left: 20px;
+}
+.dashboard .banner:first-child .firstBox .content div h4 {
+  color: #f2f2f2;
+}
 .dashboard .banner:first-child .firstBox .content div h5 {
   color: #ff008d;
 }
@@ -197,7 +203,7 @@ body {
   font-size: 16px;
 }
 .dashboard .banner:first-child .secondBox {
-  background: #1894e7;
+  background: #39bdff;
   color: #fff;
 }
 .dashboard .banner:first-child .thirdBox {

@@ -3,6 +3,26 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
+
+const validateForm = () => {
+  if (!firstName.trim()) return "First Name is required!";
+  if (!lastName.trim()) return "Last Name is required!";
+  if (!doctor_firstName.trim()) return "Doctor First Name is required!";
+  if (!doctor_lastName.trim()) return "Doctor Last Name is required!";
+  if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Provide a valid email!";
+  if (!phone.trim() || phone.length !== 11 || isNaN(phone)) return "Phone must be exactly 11 digits!";
+  if (!nic.trim() || nic.length !== 14 || isNaN(nic)) return "NIC must be exactly 13 digits!";
+  if (!appointment_date.trim()) return "Date of Birth is required!";
+  if (!gender.trim() || (gender !== "Male" && gender !== "Female")) return "Gender is required!";
+  if (!password.trim() || password.length < 8) return "Password must be at least 8 characters!";
+  if (!doctorDepartment.trim()) return "Doctor Department is required!";
+  if (!address.trim()) return "Please Enter Address so we can contact you for Home Doctor Apointment!";
+  
+  return null; // No errors
+};
+
+
+
 const AppointmentForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,7 +54,7 @@ const AppointmentForm = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       const { data } = await axios.get(
-        "http://localhost:4000/api/v1/user/doctors",
+        "http://localhost:4000/api/v1/user/doctors/getall",
         { withCredentials: true }
       );
       setDoctors(data.doctors);
@@ -42,8 +62,12 @@ const AppointmentForm = () => {
     };
     fetchDoctors();
   }, []);
+
+  
   const handleAppointment = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
+
+
     try {
       const hasVisitedBool = Boolean(hasVisited);
       const { data } = await axios.post(
@@ -123,7 +147,7 @@ const AppointmentForm = () => {
           <div>
             <input
               type="number"
-              placeholder="NIC"
+              placeholder="CNIC"
               value={nic}
               onChange={(e) => setNic(e.target.value)}
             />

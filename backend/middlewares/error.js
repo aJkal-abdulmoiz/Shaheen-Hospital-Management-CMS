@@ -1,3 +1,5 @@
+import { mongoose } from "mongoose";
+
 class ErrorHandler extends Error {
   constructor(message, statusCode) {
     super(message);
@@ -36,6 +38,27 @@ export const errorMiddleware = (err, req, res, next) => {
     success: false,
     // message: err.message,
     message: errorMessage,
+  });
+};
+
+export const errorHandlerMiddleware = (err, req, res, next) => {
+  if (err instanceof mongoose.Error.ValidationError) {
+    // Format validation errors
+    const errors = Object.keys(err.errors).map((field) => ({
+      field,
+      message: err.errors[field].message,
+    }));
+    return res.status(400).json({
+      success: false,
+      message: "Validation Error",
+      errors,
+    });
+  }
+
+  // Other errors
+  res.status(err.statusCode || 500).json({
+    success: false,
+    message: err.message || "Internal Server Error",
   });
 };
 

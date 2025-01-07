@@ -18,9 +18,30 @@ const AddNewAdmin = () => {
 
   const navigateTo = useNavigate();
 
+  const validateForm = () => {
+    if (!firstName.trim()) return "First Name is required!";
+    if (!lastName.trim()) return "Last Name is required!";
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Provide a valid email!";
+    if (!phone.trim() || phone.length !== 11 || isNaN(phone)) return "Phone must be exactly 11 digits!";
+    if (!nic.trim() || nic.length !== 14 || isNaN(nic)) return "NIC must be exactly 13 digits!";
+    if (!dob.trim()) return "Date of Birth is required!";
+    if (!gender.trim() || (gender !== "Male" && gender !== "Female")) return "Gender is required!";
+    if (!password.trim() || password.length < 8) return "Password must be at least 8 characters!";
+    return null; // No errors
+  };
+
+    
   const handleAddNewAdmin = async (e) => {
     e.preventDefault();
+    
+    // const validationError = validateForm();
+    // if (validationError) {
+    //   toast.error(validationError);
+    //   return;
+    // }
+
     try {
+      
       await axios
         .post(
           "http://localhost:4000/api/v1/user/admin/addnew",
