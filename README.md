@@ -267,4 +267,4 @@ Deployed on Localhost Server:
 - Deploy Completed
 
 ## Conclusion
-Successfully implemented a Hospital Management System with CI/CD pipelines using GitLab and Jenkins, enhancing automation and monitoring.
+Successfully implemented a Hospital Management System with CI/CD pipelines using GitLab and Jenkins, enhancing automation and monitoring..
