@@ -1,4 +1,4 @@
-# Hospital-Management-System
+# Hospital-Management-System.
 
 ## Table of Contents
 1. [Semester Project](#semester-project)
